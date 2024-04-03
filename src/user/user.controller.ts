@@ -11,7 +11,9 @@ export class UserController {
     constructor(private readonly userService: UserService) {}
 
     @Get(':email')
-    async getUserByEmail(@Param() emailUserDto: EmailUserDto): Promise<UserDto> {
+    async getUserByEmail(
+        @Param() emailUserDto: EmailUserDto,
+    ): Promise<UserDto> {
         const { email } = emailUserDto;
         return await this.userService.getUser(email);
     }
@@ -22,7 +24,7 @@ export class UserController {
         return await this.userService.addUser(email);
     }
 
-    @Delete()
+    @Delete('reset')
     async resetData(): Promise<void> {
         await this.userService.resetData();
     }
