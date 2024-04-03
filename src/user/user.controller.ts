@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from '@prisma/client';
 import { ApiTags } from '@nestjs/swagger';
-import { EmailUserDto } from './dtos/emailUser.dto';
+import { EmailUserDto } from './dtos/email-user.dto';
 import { UserDto } from './dtos/user.dto';
 
 @ApiTags('user')
