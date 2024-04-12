@@ -7,9 +7,11 @@
 - Docker Desktop installed (for using Dockerized databases)
 
 ### 🛠️ Setup
-1. Fork the repository to your GitHub account.
-2. Clone the forked repository to your local machine.
-3. Install dependencies using `npm ci`.
+1. Fork the repository to your GitHub account ;
+2. Clone the forked repository to your local machine ; 
+3. Install dependencies using `npm ci`; 
+4. Run the project using `npm run start:<db-management>:<windows?>`
+   then check the link ✨http://localhost:3000/swagger✨ ;
 
 ### 🗃️ Database
 Two databases are containerized using Docker:
@@ -17,22 +19,29 @@ Two databases are containerized using Docker:
 - MongoDB (for NoSQL data)
 
 To use these Dockerized databases:
-1. Install Docker Desktop on your machine.
-2. Launch Docker Desktop.
+1. Install Docker Desktop on your machine ;
+2. Launch Docker Desktop ;
 3. Use the appropriate npm script to **️START ▶️** the server and database:
-    - `npm run start:mongodb` for MongoDB
-    - `npm run start:postgres` for PostgreSQL
+    - `npm run start:mongodb` for MongoDB ;
+      - `npm run start:mongodb:windows` for Windows.
+    - `npm run start:postgres` for PostgreSQL.
+      - `npm run start:postgres:windows` for Windows ;
+
 
 ### 🧪 Running Tests
 The tests are located in the `test` directory and serve as the specifications for the project. To run the tests:
 - Use the appropriate npm script:
-    - `npm run test:e2e:mongodb` for MongoDB
-    - `npm run test:e2e:postgres` for PostgreSQL
+    - `npm run test:e2e:mongodb` for MongoDB ;
+    - `npm run test:e2e:postgres` for PostgreSQL ;
 
 ## 🛠️ Migration
 To perform a migration, use the following command:
-- `prisma migrate dev --name <migration_name>`
+- `prisma migrate dev --name <migration_name>` ;
+
+or Use db push to push the initial schema to the database
+- `npx prisma db push` ;
 ____
+
 # Consigne évaluation finale
 Pour ce test final vous allez être évalués sur votre maîtrise du framework NestJS. Ce projet, qui est une TodoList et qu'il vous faudra dupliquer (fork), contient un certain nombre de tests automatisés. Chacun d'entre eux couvre une fonctionnalité spécifique : création d'un utilisateur, création d'une tâche, vérification que le serveur renvoie une erreur dans tel ou tel cas etc.
 
