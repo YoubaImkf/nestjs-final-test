@@ -6,19 +6,25 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from '../infrastructure/prisma/prisma.service';
 import { User } from '@prisma/client';
-import { UserDto } from './dtos/user.dto';
-import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class UserService {
     constructor(private readonly prisma: PrismaService) {}
 
-    async getUser(email: string): Promise<UserDto> {
+    async getAllUsers(): Promise<User[]> {
+        return this.prisma.user.findMany({
+            include: {
+                tasks: true,
+            },
+        });
+    }
+
+    async getUser(email: string): Promise<User> {
         const user: User = await this.findUserByEmail(email);
-        if (!user) {
+        if (user === null || user === undefined) {
             throw new NotFoundException('User not found');
         }
-        return this.mapToUserDto(user);
+        return user;
     }
 
     async addUser(email: string): Promise<User> {
@@ -55,10 +61,6 @@ export class UserService {
         if (user) {
             throw new ConflictException('User already exists');
         }
-    }
-
-    private mapToUserDto(user: User): UserDto {
-        return plainToClass(UserDto, user, { excludeExtraneousValues: true });
     }
 
     private validateEmail(email: string): void {
