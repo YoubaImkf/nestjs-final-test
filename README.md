@@ -19,7 +19,7 @@ Two databases are containerized using Docker:
 To use these Dockerized databases:
 1. Install Docker Desktop on your machine.
 2. Launch Docker Desktop.
-3. Use the appropriate npm script to start the server and database:
+3. Use the appropriate npm script to **️START ▶️** the server and database:
     - `npm run start:mongodb` for MongoDB
     - `npm run start:postgres` for PostgreSQL
 
