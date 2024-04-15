@@ -16,7 +16,8 @@ export class TaskService {
         priority: number,
     ): Promise<Task> {
         await this.validateCreateTaskInputs(name, userId, priority);
-        await this.userExists(userId);
+        const userExists = await this.userExists(userId);
+        if (!userExists) throw new NotFoundException('User not found');
 
         return this.createTask(name, userId, priority);
     }
