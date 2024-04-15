@@ -9,8 +9,9 @@
 ### 🛠️ Setup
 1. Fork the repository to your GitHub account ;
 2. Clone the forked repository to your local machine ; 
-3. Install dependencies using `npm ci`; 
-4. Run the project using `npm run start:<db-management>:<windows?>`
+3. Install dependencies using `npm ci` ; 
+4. Push the initial schema to the database `npx prisma db push` ;
+5. Run the project using `npm run start:<db-management>:<windows?>`
    then check the link ✨http://localhost:3000/swagger✨ ;
 
 ### 🗃️ Database
