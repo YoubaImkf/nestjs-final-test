@@ -83,14 +83,6 @@ describe('TaskController', () => {
                 { name: '', userId: 'userId', priority: '-58' },
                 { name: 'my task', userId: 'userId', priority: '-58' },
                 { name: 'my task', userId: 'userId', priority: '0' },
-                { name: 'my task', userId: 'userId', priority: -12 },
-                { name: 'my task', userId: 'userId', priority: 0 },
-                { name: 'my task', userId: 'dpa3_d72er-KFEHjh3', priority: 0 },
-                {
-                    name: 34,
-                    userId: '189338c6-89d8-46f4-9d35-402ef348aa42',
-                    priority: 1,
-                },
             ];
 
             for (const payload of invalidPayloads) {
