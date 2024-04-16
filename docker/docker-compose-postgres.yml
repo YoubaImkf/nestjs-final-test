@@ -8,11 +8,11 @@ services:
     ports:
       - "${DATABASE_PORT}:5432"
     environment:
-      POSTGRES_DB: "${DATABASE_NAME}"
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./scripts/create-postgres-db.sql:/docker-entrypoint-initdb.d/create-postgres-db.sql
 
 volumes:
   postgres_data:
