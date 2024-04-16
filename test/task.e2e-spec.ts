@@ -103,22 +103,22 @@ describe('TaskController', () => {
                 {
                     name: 'task1',
                     userId: createdUser.id,
-                    priority: 1,
+                    priority: '1',
                 },
                 {
                     name: 'task2',
                     userId: createdUser.id,
-                    priority: 1,
+                    priority: '1',
                 },
                 {
                     name: 'task3',
                     userId: createdUser.id,
-                    priority: 1,
+                    priority: '1',
                 },
                 {
                     name: 'task4',
                     userId: createdUser.id,
-                    priority: 1,
+                    priority: '1',
                 },
             ];
 
