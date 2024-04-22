@@ -4,7 +4,7 @@ import {
     Injectable,
     NotFoundException,
 } from '@nestjs/common';
-import { PrismaService } from '../infrastructure/prisma/prisma.service';
+import { PrismaService } from '../infrastructure/database/prisma.service';
 import { User } from '@prisma/client';
 
 @Injectable()
@@ -12,11 +12,17 @@ export class UserService {
     constructor(private readonly prisma: PrismaService) {}
 
     async getAllUsers(): Promise<User[]> {
-        return this.prisma.user.findMany({
-            include: {
-                tasks: true,
-            },
-        });
+        try {
+            return this.prisma.user.findMany({
+                include: {
+                    tasks: true,
+                },
+            });
+        } catch (error) {
+            console.error(
+                `An error occurred while getting all users: ${error}`,
+            );
+        }
     }
 
     async getUser(email: string): Promise<User> {
@@ -34,26 +40,42 @@ export class UserService {
     }
 
     async resetData(): Promise<void> {
-        await this.prisma.user.deleteMany({});
+        try {
+            await this.prisma.user.deleteMany({});
+        } catch (error) {
+            console.error(
+                `An error occurred while resetting task data: ${error.message}`,
+            );
+        }
     }
 
     /* *
      * Private Methods
      * */
     private async findUserByEmail(email: string): Promise<User> {
-        return this.prisma.user.findUnique({
-            where: {
-                email: email,
-            },
-        });
+        try {
+            return await this.prisma.user.findUnique({
+                where: {
+                    email: email,
+                },
+            });
+        } catch (error) {
+            console.error(
+                `An error occurred while finding user by email: ${error}`,
+            );
+        }
     }
 
     private async createUser(email: string): Promise<User> {
-        return this.prisma.user.create({
-            data: {
-                email: email,
-            },
-        });
+        try {
+            return await this.prisma.user.create({
+                data: {
+                    email: email,
+                },
+            });
+        } catch (error) {
+            console.error(`An error occurred while creating user: ${error}`);
+        }
     }
 
     private async checkIfUserExists(email: string): Promise<void> {
