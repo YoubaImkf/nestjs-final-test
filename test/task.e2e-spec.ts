@@ -168,7 +168,7 @@ async function createTasksFor2DifferentUsers(
 }
 
 async function createNestApplication(): Promise<INestApplication> {
-    process.env.DATABASE_NAME = 'test_nestjs-final-test-db_TASKS';
+    process.env.DATABASE_URL = process.env.TEST_TASK_DATABASE_URL;
 
     const module = await Test.createTestingModule({
         imports: [AppModule],

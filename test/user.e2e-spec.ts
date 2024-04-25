@@ -74,7 +74,7 @@ describe('UserController', () => {
 });
 
 async function createNestApplication() {
-    process.env.DATABASE_NAME = 'test_nestjs-final-test-db_USERS';
+    process.env.DATABASE_URL = process.env.TEST_USER_DATABASE_URL;
 
     const module = await Test.createTestingModule({
         imports: [AppModule],
