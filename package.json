@@ -22,7 +22,18 @@
     "test:e2e:postgres:windows": "set DBMS=postgres && docker-compose --env-file ./.env -f ./docker/docker-compose-postgres.yml up -d && jest --config ./test/jest-e2e.json",
     "start:mongodb": "export DBMS=mongodb; docker-compose --env-file ./.env -f ./docker/docker-compose-mongodb.yml up -d; npm run start:dev",
     "start:postgres": "export DBMS=postgres; docker-compose --env-file ./.env -f ./docker/docker-compose-postgres.yml up -d; npm run start:dev",
-    "start:postgres:windows": "set DBMS=postgres && docker-compose --env-file ./.env -f ./docker/docker-compose-postgres.yml up -d && npm run start:dev"
+    "start:postgres:windows": "set DBMS=postgres && docker-compose --env-file ./.env -f ./docker/docker-compose-postgres.yml up -d && npm run start:dev",
+
+    "test:user:migrate:dev": "prisma migrate dev --schema test/database/user/user.schema.prisma --name ",
+    "test:user:dbpush": "npx prisma db push --schema test/database/user/user.schema.prisma",
+    "test:user:generate": "npx prisma generate --schema test/database/user/user.schema.prisma",
+
+    "test:task:migrate:dev": "prisma migrate dev --schema test/database/task/task.schema.prisma --name ",
+    "test:task:dbpush": "npx prisma db push --schema test/database/task/task.schema.prisma",
+    "test:task:generate": "npx prisma generate --schema test/database/task/task.schema.prisma",
+
+    "test:generate:db_clients": "npx prisma generate --schema test/database/user/user.schema.prisma && npx prisma generate --schema test/database/task/task.schema.prisma",
+    "test:user:task:migrate:dbpush:generate": "prisma migrate dev --schema test/database/user/user.schema.prisma --name 'initial_migration' && prisma db push --schema test/database/user/user.schema.prisma && prisma generate --schema test/database/user/user.schema.prisma && prisma migrate dev --schema test/database/task/task.schema.prisma --name 'initial_migration' && prisma db push --schema test/database/task/task.schema.prisma && prisma generate --schema test/database/task/task.schema.prisma"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
